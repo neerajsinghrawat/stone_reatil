@@ -27,9 +27,9 @@ class SearchController extends Controller
         $selected_attribute_values = array();
         $colors = Color::all();
         $selected_color = null;
-
-        $conditions = ['published' => 1];
-
+       
+        $conditions = ['published' => 1, 'system_type'=>"retail"];
+       
         if ($brand_id != null) {
             $conditions = array_merge($conditions, ['brand_id' => $brand_id]);
         } elseif ($request->brand != null) {
@@ -40,7 +40,7 @@ class SearchController extends Controller
         // if ($seller_id != null) {
         //     $conditions = array_merge($conditions, ['user_id' => Seller::findOrFail($seller_id)->user->id]);
         // }
-
+        //echo '<cpre>'; print_r($conditions); die;    
         $products = Product::where($conditions);
 
         if ($category_id != null) {
@@ -48,6 +48,7 @@ class SearchController extends Controller
             $category_ids[] = $category_id;
 
             $products->whereIn('category_id', $category_ids);
+            
 
             //$attribute_ids = AttributeCategory::whereIn('category_id', $category_ids)->pluck('attribute_id')->toArray();
             //$attributes = Attribute::whereIn('id', $attribute_ids)->get();
@@ -128,13 +129,14 @@ class SearchController extends Controller
     }
 
     public function listing(Request $request)
-    {
+    {   
         return $this->index($request);
     }
 
     public function listingByCategory(Request $request, $category_slug)
     {
-        $category = Category::where('slug', $category_slug)->first();
+        $category = Category::where('slug', $category_slug)->first(); 
+        //echo'<pre>'; print_r($category); die; 
         if ($category != null) {
             return $this->index($request, $category->id);
         }
