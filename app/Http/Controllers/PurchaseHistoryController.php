@@ -180,7 +180,9 @@ class PurchaseHistoryController extends Controller
      */
     public function order_cancel($id)
     {
-        $order = Order::where('id', $id)->where('user_id', auth()->user()->id)->first();
+        $order = Order::where('id', $id)->where('user_id', auth()->user()->id)->first(); 
+        
+            // echo("sdgfs");die;
         if($order && ($order->delivery_status == 'pending' && $order->payment_status == 'unpaid')) {
             $order->delivery_status = 'cancelled';
             $order->save();
