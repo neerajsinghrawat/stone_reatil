@@ -48,7 +48,7 @@ class AuthController extends Controller
         if (BusinessSetting::where('type', 'email_verification')->first()->value != 1) {
             $user->email_verified_at = date('Y-m-d H:m:s');
         }
-
+        
         if($user->email_verified_at == null){
             if ($request->register_by == 'email') {
                 try {

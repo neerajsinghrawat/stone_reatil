@@ -162,14 +162,14 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <!-- <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h3 class="mb-0 h6 text-center">{{translate('Email Verification')}}</h3>
             </div>
             <div class="card-body text-center">
                 <label class="aiz-switch aiz-switch-success mb-0">
-                    <input type="checkbox" onchange="updateSettings(this, 'email_verification')" <?php if(get_setting('email_verification') == 1) echo "checked";?>>
+                    <input type="checkbox" onchange="updateSettings(this, 'email_verification')" <?php //if(get_setting('email_verification') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
                 <div class="alert" style="color: #004085;background-color: #cce5ff;border-color: #b8daff;margin-bottom:0;margin-top:10px;">
@@ -177,7 +177,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     @if(addon_is_activated('wholesale'))
         <div class="col-lg-4">
             <div class="card">
